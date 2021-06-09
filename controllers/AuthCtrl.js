@@ -47,6 +47,7 @@ class AuthCtrl {
 
     res.status(200).send({
       data: {
+        token: AuthCtrl.generateToken(user),
         user: OutputFormatter.formatUser(user)
       }
     });

@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const { ErrorHandler } = require('../helpers');
 const config = require('../config');
 
@@ -21,6 +23,7 @@ class AuthMiddleware {
         );
       }
 
+      req.user = decoded;
       next();
     } catch (err) {
       return next(new ErrorHandler(err, 500));

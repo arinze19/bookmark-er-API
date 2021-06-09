@@ -20,6 +20,7 @@ class OutputFormatter {
     return {
       id: bookmark._id,
       link: bookmark.link,
+      owner: bookmark.owner,
       category: bookmark.category
     };
   }

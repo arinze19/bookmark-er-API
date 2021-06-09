@@ -4,8 +4,9 @@ const { Bookmark } = require('../models');
 class BookmarkCtrl {
   static async create(req, res) {
     const { link, category } = req.body;
+    const { id } = req.user;
 
-    let bookmark = Bookmark.findOne({ link });
+    let bookmark = await Bookmark.findOne({ link });
 
     if (bookmark) {
       res.status(409).send('this link already exists');
@@ -13,7 +14,8 @@ class BookmarkCtrl {
 
     bookmark = new Bookmark({
       link,
-      category
+      category,
+      owner: id
     });
     await bookmark.save();
 
@@ -27,7 +29,7 @@ class BookmarkCtrl {
   static async retrieve(req, res) {
     const { id } = req.user;
 
-    const bookmarks = Bookmark.find({ id });
+    const bookmarks = await Bookmark.find({ owner: id });
 
     if (!bookmarks) {
       return next(new ErrorHandler('user not found', 404));

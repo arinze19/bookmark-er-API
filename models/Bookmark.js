@@ -10,6 +10,11 @@ const bookmarkSchema = new Schema({
     type: String,
     required: true
   },
+  owner: {
+    type: String,
+    required: true,
+    ref: 'User'
+  },
   category: {
     type: String
   }
