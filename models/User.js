@@ -24,22 +24,20 @@ const userSchema = new Schema({
   },
   bookmarks: [
     {
-      bookmarkId: {
-        type: String,
-        ref: 'Bookmark',
-        required: true
-      }
+      type: String,
+      ref: 'Bookmark',
+      required: true
     }
   ]
 });
 
 userSchema.virtual('password').get(function () {
-    return this.hashedPassword;
-})
+  return this.hashedPassword;
+});
 
 userSchema.virtual('password').set(function (plainText) {
-    const salt = bcrypt.genSaltSync(10);
-    this.hashedPassword = bcrypt.hashSync(plainText, salt);
-})
+  const salt = bcrypt.genSaltSync(10);
+  this.hashedPassword = bcrypt.hashSync(plainText, salt);
+});
 
 module.exports = model('User', userSchema);
