@@ -39,10 +39,10 @@ class AuthCtrl {
   static async signIn(req, res) {
     const { email, password } = req.body;
 
-    let user = User.findOne({ email });
+    let user = await User.findOne({ email });
 
     if (!(await bcrypt.compare(password, user.password))) {
-      return new ErrorHandler('worng password', 403);
+      return next(new ErrorHandler('wrong password', 403));
     }
 
     res.status(200).send({

@@ -9,6 +9,7 @@ const router = express.Router();
 
 const config = require('./config');
 const Routes = require('./routes');
+const { handleError } = require('./helpers/ErrorHelper');
 
 const bootstrapApp = async () => {
   await mongoose.connect(config.database.url, {
@@ -21,8 +22,15 @@ const bootstrapApp = async () => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
+  // handle routing
   app.use('/api/v1/', Routes.route(router));
 
+  // handle general errors
+  app.use((err, req, res, next) => {
+    handleError(err, res);
+    next();
+  });
+ 
   await app.listen(config.port);
 };
 
