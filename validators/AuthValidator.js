@@ -16,12 +16,12 @@ class AuthValidator {
   }
 
   static validateSignIn(req, res, next) {
-    const { name, email } = req.body;
+    const { password, email } = req.body;
 
-    if (!name) {
-      return next(new ErrorHandler('Sorry, a name is required', 401));
+    if (!password) {
+      return next(new ErrorHandler('Sorry, a Password is required', 401));
     } else if (!email) {
-      return next(new ErrorHandler('Sorry, an email is required', 401));
+      return next(new ErrorHandler('Sorry, an Email is required', 401));
     }
 
     next();
