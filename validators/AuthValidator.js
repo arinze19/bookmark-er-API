@@ -15,7 +15,7 @@ class AuthValidator {
     next();
   }
 
-  static validateSignIn(req, res) {
+  static validateSignIn(req, res, next) {
     const { name, email } = req.body;
 
     if (!name) {
