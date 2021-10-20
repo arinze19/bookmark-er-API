@@ -13,19 +13,30 @@
  * @property {string} password
  */
 
+/**
+ * @typedef BookmarkRequest 
+ * @property {string} link 
+ * @property {string} category
+ */
+
 
 //RESPONSES
 
 /**
- * @typedef AuthSignupResponse 
+ * @typedef AuthResponse 
  * @property {string} token
  * @property {UserResponse} user
+ */
+
+/**
+ * @typedef BookmarkResponse 
+ * @property {Array.<Bookmark>} bookmarks
  */
 
 
 // GENERAL 
 /**
- * @typedef UserResponse 
+ * @typedef User
  * @property {string} id
  * @property {string} name
  * @property {string} email 
@@ -33,7 +44,7 @@
  */
 
 /**
- * @typedef BookmarkResponse 
+ * @typedef Bookmark
  * @property {string} id 
  * @property {string} link 
  * @property {string} category

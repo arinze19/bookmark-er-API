@@ -39,22 +39,22 @@ class BookmarkCtrl {
     });
   }
 
-  static async update(req, res, next) {
-    const { id } = req.user;
-    const { body} = req;
+  // static async update(req, res, next) {
+  //   const { id } = req.user;
+  //   const { link } = req;
 
-    const bookmark = await Bookmark.findOne({ link, owner: id });
+  //   const bookmark = await Bookmark.findOne({ link, owner: id });
 
-    if (!bookmark) {
-      return next(new ErrorHandler('Bookmark not found', 404));
-    }
+  //   if (!bookmark) {
+  //     return next(new ErrorHandler('Bookmark not found', 404));
+  //   }
 
-    ['link', 'category'].map((prop) => {
-      if (body[prop]) {
-        bookmark[prop] = body[prop];
-      }
-    });
-  }
+  //   ['link', 'category'].map((prop) => {
+  //     if (body[prop]) {
+  //       bookmark[prop] = body[prop];
+  //     }
+  //   });
+  // }
 }
 
 module.exports = BookmarkCtrl;
