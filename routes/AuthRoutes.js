@@ -3,8 +3,27 @@ const { AuthValidator } = require('../validators');
 
 class AuthRoutes {
   static route(router) {
-    router.route('/sign-up').post(AuthValidator.validateSignUp, AuthCtrl.signUp);
-    router.route('/sign-in').post(AuthValidator.validateSignIn, AuthCtrl.signIn);
+    /**
+     * @route POST /auth/sign-up
+     * @group Authentication
+     * @param {AuthSignInRequest.model} example.body.required expected values. name, email and password
+     * @produces application/json
+     * @returns {AuthResponse.model} 200
+     */
+    router
+      .route('/auth/sign-up')
+      .post(AuthValidator.validateSignUp, AuthCtrl.signUp);
+
+    /**
+     * @route POST /auth/sign-in
+     * @group Authentication
+     * @param {AuthSignInRequest.model} example.body.required expected values. email and password
+     * @produces application/json
+     * @returns {AuthResponse.model} 200
+     */
+    router
+      .route('/auth/sign-in')
+      .post(AuthValidator.validateSignIn, AuthCtrl.signIn);
   }
 }
 

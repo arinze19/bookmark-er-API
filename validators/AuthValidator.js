@@ -1,4 +1,5 @@
-const { ErrorHandler } = require('../helpers');
+const { ErrorHandler, StringHelper } = require('../helpers');
+const { isEmail } = StringHelper;
 
 class AuthValidator {
   static validateSignUp(req, res, next) {
@@ -8,6 +9,8 @@ class AuthValidator {
       return next(new ErrorHandler('Sorry, a name is required', 401));
     } else if (!email) {
       return next(new ErrorHandler('Sorry, an email is required', 401));
+    } else if(!isEmail(email)) {
+      return next(new ErrorHandler('Please, provide a valid email - (HINT: at least 6 characters long)'))
     } else if (!password) {
       return next(new ErrorHandler('Sorry, a password is required', 401));
     }
