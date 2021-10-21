@@ -6,7 +6,7 @@ class StringHelper {
    * @returns {boolean}
    */
   static isEmail(email) {
-    return /^[a-z0-9]\w{5,}@\w+.([a-z]{2,})$/.test(email);
+    return /^[a-z0-9](\w|.){5,}@\w+.([a-z]{2,})$/.test(email);
   }
 }
 
